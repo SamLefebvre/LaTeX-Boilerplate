@@ -1,0 +1,128 @@
+\documentclass{article}
+
+\usepackage{lipsum} % Random text
+\usepackage{fullpage} % Use 1 inch margins
+\usepackage{color}	% Use colors
+\usepackage[dvipsnames]{xcolor} % Colors name
+\usepackage{amsmath} % Mathematics symbols
+\usepackage{soul} % Highlight
+\usepackage{hyperref} % URL
+\usepackage{cleveref} % Load cleveref after hyperref
+\usepackage{graphicx, graphics, subcaption} % When figures are needed
+\usepackage{float} % Improved interface for floating objects
+\usepackage[section]{placeins} % ensure all floats for a section appear before the next \section command
+\usepackage{enumerate} % Roman numeral
+
+% Configuration
+\definecolor{blue(munsell)}{rgb}{0.0, 0.5, 0.69}
+\hypersetup{
+	linkcolor=violet,
+	citecolor=YellowOrange,
+	urlcolor=blue(munsell),
+	colorlinks = true,
+	pageanchor=false, % disable pageanchor for titlepage
+}
+\graphicspath{{figures/}} % Need two brackets, folder is figures
+
+\begin{document}
+
+\title{This is my \LaTeX{}  boilerplate document}
+\author{LastName, FirstName}
+\date{July 27 2020}
+\def\titledescription{Description of the document}
+
+\input{titlepage.tex} % Insert another document
+
+\input{abstract.tex}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Agenda}
+
+\begin{enumerate}[I.] % Roman numbering and .
+	\item \nameref{sec:intro}
+	\item \nameref{sec:hello}
+	\item \nameref{sec:typesetting_syntax}
+	\item \nameref{sec:labeling-and-referencing}
+	\item \nameref{sec:math}
+	\item \nameref{sec:tables}
+	\item \nameref{sec:figures}
+\end{enumerate}
+
+\input{intro.tex}
+
+\section{Hello world}
+\label{sec:hello}
+Hello world !
+
+\input{typeset.tex}
+
+\section{Labeling and Referencing}
+\label{sec:labeling-and-referencing}
+
+Here I would like to call introduction section by using \verb|ref{label}|. Section \ref{sec:intro}. Let us call subsection! In subsection \ref{subsec:paragraph}, we covered paragraph.
+
+\input{mathtyping.tex}
+
+\newpage
+\section{Tables}
+\label{sec:tables}
+
+Here we are going to deal with the table stuff in \LaTeX.
+The very first version of our table can be like this:
+\begin{table}[H] % h for here, b for bottom, t for top
+	\centering
+	\caption{\textsc{This is my first table}}
+	\label{tab:myfirsttab}
+	\begin{tabular}{c || c} % Two cc reprensents two columns
+		\textbf{Notation} & \textbf{Description} \\ \hline \hline
+		$x$ & This is the description for the notation\\ \hline
+		$y$ & This is the description for the notation\\ \hline
+		$z$ & This is the description for the notation\\ \hline
+		$w$ & This is the description for the notation\\ \hline
+		$\alpha$ & This is the description for the notation\\ \hline
+		$\theta$ & This is the description for the notation\\ \hline
+		$\beta$ & This is the description for the notation\\ \hline
+		$\int_{a}^{b} f(x)$ & B\\ \hline
+		$\lambda$ & This notation is related to  Eq. \ref{eq:sample05} \\
+		\hline
+	\end{tabular}
+%	\caption{\textsc{This is my first table}}
+\end{table}
+
+
+\section{Figures}
+\label{sec:figures}
+
+Here we will need to have a specific package called \verb|\usepackage{graphicx, graphics, subcaption}|. Then we need to define the path for the figures. We need to do it right after \verb|\begin{document}|
+and the command to it is \verb|\graphicspath{{path/}}|
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=.5\linewidth]{fig1.jpg}
+	\caption{Picture of Linear Gradient}
+	\label{fig:linearcolors}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=.5\linewidth]{fig2.jpg}
+	\caption{Picture of Diamond Gradient}
+	\label{fig:diamondcolors}
+\end{figure}
+
+I would like to call figure like this. Fig.\ref{fig:linearcolors}.
+
+Calling Fig.\ref{fig:diamondcolors}, named \nameref{fig:diamondcolors}.
+
+\section{Bibliography and Citations}
+
+First, you need to create a bib file. Then, you put you bibtext inside it.
+Further, you need to call it before \verb|\end{document}|. Let us call the reference \cite{bibexample}.
+
+\bibliographystyle{apalike}
+\bibliography{ref}
+
+\end{document}
